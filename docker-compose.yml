@@ -3,10 +3,6 @@ services:
   container_a:
     image: nginx
     container_name: container_a
-    depends_on:
-      - container_b1
-      - container_b2
-      - container_b3
 
   container_b1:
     image: nginx
