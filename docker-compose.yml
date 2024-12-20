@@ -1,0 +1,33 @@
+services:
+
+  container_a:
+    image: nginx
+    container_name: container_a
+
+  container_b1:
+    image: nginx
+    container_name: container_b1
+
+  container_b2:
+    image: nginx
+    container_name: container_b2
+
+  container_b3:
+    image: nginx
+    container_name: container_b3
+
+  container_c:
+    image: docker
+    container_name: container_c
+    command: docker events
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  monitor:
+    image: bash:latest
+    container_name: monitor
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./monitor_script.sh:/monitor_script.sh
+    entrypoint: ["/usr/local/bin/bash", "-c", "apk add --no-cache docker-cli && /monitor_script.sh"]
