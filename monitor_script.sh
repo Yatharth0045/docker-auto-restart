@@ -1,10 +1,9 @@
 #!/usr/local/bin/bash
 
 # List of containers to monitor (Container B)
-CONTAINERS_B=("container_b1" "container_b2" "container_b3")
-
+CONTAINERS_B=(${BASE_CONTAINERS:-"container_b1"})
 # Container A
-CONTAINER_A="container_a"
+CONTAINER_A=${DEPENDENT_CONTAINER:-"container_a"}
 
 # Monitor Docker events for the specified containers
 docker events --filter "event=start" |
